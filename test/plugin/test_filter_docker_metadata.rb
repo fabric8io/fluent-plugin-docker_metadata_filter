@@ -64,11 +64,11 @@ class DockerMetadataFilterTest < Test::Unit::TestCase
       ]
     end
 
-    def emit(config, msgs)
+    def emit(config, msgs, tag='df14e0d5ae4c07284fa636d739c8fc2e6b52bc344658de7d3f08c36a2e804115')
       d = create_driver(config)
       d.run {
         msgs.each { |msg|
-          d.emit_with_tag('df14e0d5ae4c07284fa636d739c8fc2e6b52bc344658de7d3f08c36a2e804115', {'foo' => 'bar', 'message' => msg}, @time)
+          d.emit_with_tag(tag, {'foo' => 'bar', 'message' => msg}, @time)
         }
       }.filtered
     end
@@ -82,6 +82,14 @@ class DockerMetadataFilterTest < Test::Unit::TestCase
         assert_equal('fabric8-console-controller-9knhj', es.instance_variable_get(:@record_array)[0][:docker][:container_hostname])
         assert_equal('b2bd1a24a68356b2f30128e6e28e672c1ef92df0d9ec01ec0c7faea5d77d2303', es.instance_variable_get(:@record_array)[0][:docker][:image_id])
         assert_equal('fabric8/hawtio-kubernetes:latest', es.instance_variable_get(:@record_array)[0][:docker][:image])
+      end
+    end
+
+    test 'nonexistent docker metadata' do
+      VCR.use_cassette('nonexistent_docker_metadata') do
+        es = emit('', messages, '1111111111111111111111111111111111111111111111111111111111111111')
+        assert_equal(4, es.instance_variable_get(:@record_array).size)
+        assert_nil(es.instance_variable_get(:@record_array)[0][:docker])
       end
     end
   end
