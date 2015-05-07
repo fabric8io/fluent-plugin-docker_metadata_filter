@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = "fluent-plugin-docker_metadata_filter"
-  gem.version       = "0.1.0"
+  gem.version       = "0.1.1"
   gem.authors       = ["Jimmi Dyson"]
   gem.email         = ["jimmidyson@gmail.com"]
   gem.description   = %q{Filter plugin to add Docker metadata}
@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}) { |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
-  gem.has_rdoc = false
+  gem.has_rdoc      = false
 
   gem.required_ruby_version = '>= 1.9.3'
 
@@ -32,4 +32,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "copyright-header"
   gem.add_development_dependency "webmock"
   gem.add_development_dependency "vcr"
+  gem.add_development_dependency "bump"
 end
