@@ -1,5 +1,6 @@
 require "bundler/gem_tasks"
 require "rake/testtask"
+require "bump/tasks"
 
 task :test => [:base_test]
 
