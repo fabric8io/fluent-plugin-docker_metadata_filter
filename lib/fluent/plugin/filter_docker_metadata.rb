@@ -54,7 +54,7 @@ module Fluent
       container_id = tag.match(@container_id_regexp_compiled)
       if container_id && container_id[0]
         container_id = container_id[0]
-        metadata = @cache.getset(container_id[0]){DockerMetadataFilter.get_metadata(container_id)}
+        metadata = @cache.getset(container_id){DockerMetadataFilter.get_metadata(container_id)}
 
         if metadata
           new_es = MultiEventStream.new
