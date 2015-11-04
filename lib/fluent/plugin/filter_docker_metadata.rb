@@ -1,3 +1,6 @@
+require 'docker'
+require 'json'
+
 #
 # Fluentd Docker Metadata Filter Plugin - Enrich Fluentd events with Docker
 # metadata
@@ -39,13 +42,8 @@ module Fluent
     def configure(conf)
       super
 
-      require 'docker'
-      require 'json'
-      require 'lru_redux'
-
       Docker.url = @docker_url
 
-      @cache = LruRedux::ThreadSafeCache.new(@cache_size)
       @container_id_regexp_compiled = Regexp.compile(@container_id_regexp)
     end
 
@@ -54,19 +52,19 @@ module Fluent
       container_id = tag.match(@container_id_regexp_compiled)
       if container_id && container_id[0]
         container_id = container_id[0]
-        metadata = @cache.getset(container_id){DockerMetadataFilter.get_metadata(container_id)}
+        metadata = DockerMetadataFilter.get_metadata(container_id)
 
         if metadata
           new_es = MultiEventStream.new
 
           es.each {|time, record|
-            record[:docker] = {
-              :id => metadata['id'],
-              :name => metadata['Name'],
-              :container_hostname => metadata['Config']['Hostname'],
-              :image => metadata['Config']['Image'],
-              :image_id => metadata['Image'],
-              :labels => metadata['Config']['Labels']
+            record['docker'] = {
+              'id' => metadata['id'],
+              'name' => metadata['Name'],
+              'container_hostname' => metadata['Config']['Hostname'],
+              'image' => metadata['Config']['Image'],
+              'image_id' => metadata['Image'],
+              'labels' => metadata['Config']['Labels']
             }
             new_es.add(time, record)
           }
