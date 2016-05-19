@@ -60,13 +60,13 @@ module Fluent
           new_es = MultiEventStream.new
 
           es.each {|time, record|
-            record[:docker] = {
-              :id => metadata['id'],
-              :name => metadata['Name'],
-              :container_hostname => metadata['Config']['Hostname'],
-              :image => metadata['Config']['Image'],
-              :image_id => metadata['Image'],
-              :labels => metadata['Config']['Labels']
+            record['docker'] = {
+              'id' => metadata['id'],
+              'name' => metadata['Name'],
+              'container_hostname' => metadata['Config']['Hostname'],
+              'image' => metadata['Config']['Image'],
+              'image_id' => metadata['Image'],
+              'labels' => metadata['Config']['Labels']
             }
             new_es.add(time, record)
           }
