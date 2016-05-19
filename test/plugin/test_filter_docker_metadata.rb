@@ -77,11 +77,11 @@ class DockerMetadataFilterTest < Test::Unit::TestCase
       VCR.use_cassette('docker_metadata') do
         es = emit('', messages)
         assert_equal(4, es.instance_variable_get(:@record_array).size)
-        assert_equal('df14e0d5ae4c07284fa636d739c8fc2e6b52bc344658de7d3f08c36a2e804115', es.instance_variable_get(:@record_array)[0][:docker][:id])
-        assert_equal('/k8s_fabric8-console-container.efbd6e64_fabric8-console-controller-9knhj_default_8ae2f621-f360-11e4-8d12-54ee7527188d_7ec9aa3e', es.instance_variable_get(:@record_array)[0][:docker][:name])
-        assert_equal('fabric8-console-controller-9knhj', es.instance_variable_get(:@record_array)[0][:docker][:container_hostname])
-        assert_equal('b2bd1a24a68356b2f30128e6e28e672c1ef92df0d9ec01ec0c7faea5d77d2303', es.instance_variable_get(:@record_array)[0][:docker][:image_id])
-        assert_equal('fabric8/hawtio-kubernetes:latest', es.instance_variable_get(:@record_array)[0][:docker][:image])
+        assert_equal('df14e0d5ae4c07284fa636d739c8fc2e6b52bc344658de7d3f08c36a2e804115', es.instance_variable_get(:@record_array)[0]['docker']['id'])
+        assert_equal('/k8s_fabric8-console-container.efbd6e64_fabric8-console-controller-9knhj_default_8ae2f621-f360-11e4-8d12-54ee7527188d_7ec9aa3e', es.instance_variable_get(:@record_array)[0]['docker']['name'])
+        assert_equal('fabric8-console-controller-9knhj', es.instance_variable_get(:@record_array)[0]['docker']['container_hostname'])
+        assert_equal('b2bd1a24a68356b2f30128e6e28e672c1ef92df0d9ec01ec0c7faea5d77d2303', es.instance_variable_get(:@record_array)[0]['docker']['image_id'])
+        assert_equal('fabric8/hawtio-kubernetes:latest', es.instance_variable_get(:@record_array)[0]['docker']['image'])
       end
     end
 
@@ -89,7 +89,7 @@ class DockerMetadataFilterTest < Test::Unit::TestCase
       VCR.use_cassette('nonexistent_docker_metadata') do
         es = emit('', messages, '1111111111111111111111111111111111111111111111111111111111111111')
         assert_equal(4, es.instance_variable_get(:@record_array).size)
-        assert_nil(es.instance_variable_get(:@record_array)[0][:docker])
+        assert_nil(es.instance_variable_get(:@record_array)[0]['docker'])
       end
     end
   end
