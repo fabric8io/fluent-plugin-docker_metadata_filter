@@ -49,7 +49,7 @@ Then output becomes as belows
   "stream": "stderr",
   "docker": {
     "id": "df14e0d5ae4c07284fa636d739c8fc2e6b52bc344658de7d3f08c36a2e804115",
-    "name": "/k8s_fabric8-console-container.efbd6e64_fabric8-console-controller-9knhj_default_8ae2f621-f360-11e4-8d12-54ee7527188d_7ec9aa3e",
+    "name": "k8s_fabric8-console-container.efbd6e64_fabric8-console-controller-9knhj_default_8ae2f621-f360-11e4-8d12-54ee7527188d_7ec9aa3e",
     "container_hostname": "fabric8-console-controller-9knhj",
     "image": "fabric8/hawtio-kubernetes:latest",
     "image_id": "b2bd1a24a68356b2f30128e6e28e672c1ef92df0d9ec01ec0c7faea5d77d2303",
