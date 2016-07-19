@@ -1,3 +1,5 @@
+# THIS PLUGIN IS NO LONGER MAINTAINED - SORRY!
+
 # fluent-plugin-docker_metadata_filter, a plugin for [Fluentd](http://fluentd.org)
 [![Circle CI](https://circleci.com/gh/fabric8io/fluent-plugin-docker_metadata_filter.svg?style=svg)](https://circleci.com/gh/fabric8io/fluent-plugin-docker_metadata_filter)
 [![Code Climate](https://codeclimate.com/github/fabric8io/fluent-plugin-docker_metadata_filter/badges/gpa.svg)](https://codeclimate.com/github/fabric8io/fluent-plugin-docker_metadata_filter)
