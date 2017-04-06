@@ -31,6 +31,8 @@ require 'test/unit/rr'
 require 'fileutils'
 require 'fluent/log'
 require 'fluent/test'
+require 'fluent/test/driver/filter'
+require 'fluent/test/helpers'
 require 'webmock/test_unit'
 require 'vcr'
 
