@@ -64,5 +64,3 @@ def ipv6_enabled?
     false
   end
 end
-
-$log = Fluent::Log.new(Fluent::Test::DummyLogDevice.new, Fluent::Log::LEVEL_WARN)
