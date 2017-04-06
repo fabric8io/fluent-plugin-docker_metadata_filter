@@ -18,9 +18,9 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.has_rdoc      = false
 
-  gem.required_ruby_version = '>= 1.9.3'
+  gem.required_ruby_version = '>= 2.1.0'
 
-  gem.add_runtime_dependency "fluentd"
+  gem.add_runtime_dependency "fluentd", [">= 0.14.0", "< 2"]
   gem.add_runtime_dependency "docker-api"
   gem.add_runtime_dependency "lru_redux"
 

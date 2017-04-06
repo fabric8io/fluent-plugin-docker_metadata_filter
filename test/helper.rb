@@ -31,6 +31,8 @@ require 'test/unit/rr'
 require 'fileutils'
 require 'fluent/log'
 require 'fluent/test'
+require 'fluent/test/driver/filter'
+require 'fluent/test/helpers'
 require 'webmock/test_unit'
 require 'vcr'
 
@@ -62,5 +64,3 @@ def ipv6_enabled?
     false
   end
 end
-
-$log = Fluent::Log.new(Fluent::Test::DummyLogDevice.new, Fluent::Log::LEVEL_WARN)
